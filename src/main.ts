@@ -106,7 +106,7 @@ function initSelect(): void {
             gradebookActivity.add(option);
         }
     );
-    
+    // aqui se llama al estudiante
     let assignmentsStudent = document.getElementById("assignment_student") as HTMLSelectElement;
 
     document.querySelectorAll("#assignment_student option").forEach(option => option.remove());
@@ -119,7 +119,7 @@ function initSelect(): void {
             assignmentsStudent.add(option);
         }
     );
-   
+    // asignar la nota maxima
     let assignmentSetup = document.getElementById("assignment_gradebooksetup") as HTMLSelectElement;
 
     document.querySelectorAll("#assignment_gradebooksetup option").forEach(option => option.remove());
@@ -134,56 +134,112 @@ function initSelect(): void {
     );
 
 }
-
-
 initSelect()
 
+// asignacion
 
 
 class Gradebook {
-
+    // public students: Student[];
+    // public activities: Activity[];
+    // public gradebookSetups: GradebookSetup[];
+    // public assignments: Assignment[];
+    // public teachers?: Teacher[];
+  
     constructor(
-        public students: Student[],
-        public activities: Activity[],
-        public gradebookSetups: GradebookSetup[],
-        public assignments: Assignment[],
-        public teachers?: Teacher[],
-    ) { };
-
-    public buildGradebookDTOFromAssignment(): GradebookDTO[] {
-        let gradebookDTOs: GradebookDTO[] = [];
-
-        this.assignments.forEach(
-            (assignment) => {
-
-                let currentGradebooksetup = gradebookSetups.filter((item) => item.value === assignment.gradebooksetup)[0];
-                let currentStudent = students.filter((student) => student.dni === assignment.student)[0];
-
-                let rowGradebook: GradebookDTO = {
-                    //Course
-                    course: currentGradebooksetup.course,
-                    //Student
-                    studentName: currentStudent.fullName,
-                    lastName: "",
-                    level: currentStudent.level,
-                    dni: assignment.student,
-                    fullName: currentStudent.fullName,
-                    //GradebookSetup
-                    value: "",
-                    activity: "",
-                    maximun_grade: 0,
-                    //Activity
-                    name: "",
-                    //Assignment
-                    student: assignment.student,
-                    gradebooksetup: assignment.gradebooksetup,
-                    grade: assignment.grade
-                }
-                gradebookDTOs.push(rowGradebook);
-            }
-        );
-
-        return gradebookDTOs;
+      public students: Student[],
+      public activities: Activity[],
+      public gradebookSetups: GradebookSetup[],
+      public assignments: Assignment[],
+      public teachers?: Teacher[]
+    ) {
+      // this.students=students;
+      // this.activities=activities;
+      // this.gradebookSetups=gradebookSetups;
+      // this.assignments=assignments;
     }
+  
+    public buildGradebookDTOFromAssignment(): GradebookDTO[] {
+      let gradebookDTOs: GradebookDTO[] = [];
+  
+      this.assignments.forEach((assignment) => {
+        let currentGradebooksetup = gradebookSetups.filter(
+          (item) => item.value === assignment.gradebooksetup
+        )[0];
+        let currentStudent = students.filter(
+          (student) => student.dni === assignment.student
+        )[0];
+  
+        let rowGradebook: GradebookDTO = {
+          //Course
+          course: currentGradebooksetup.course,
+          //Student
+          studentName: currentStudent.fullName,
+          lastName: "",
+          level: currentStudent.level,
+          dni: assignment.student,
+          fullName: currentStudent.fullName,
+          //GradebookSetup
+          value: "",
+          activity:currentGradebooksetup.activity,
+          maximun_grade: 0,
+          //Activity
+          name: "",
+          //Assignment
+          student: assignment.student,
+          gradebooksetup: assignment.gradebooksetup,
+          grade: assignment.grade,
+        };
+        gradebookDTOs.push(rowGradebook);
 
-}
+        if (assignment.grade>70) {
+            console.log('El estudiante a pasado');
+        }
+        else{
+            console.log('El estudiante a reprobado');
+        }
+
+      });
+  
+      return gradebookDTOs;
+    }
+  }
+  function generateReport(): void {
+    let reportGrade: Gradebook = new Gradebook(
+      students,
+      activities,
+      gradebookSetups,
+      assignments,
+      teachers
+    );
+    let rowReport: GradebookDTO[] = reportGrade.buildGradebookDTOFromAssignment()
+    console.log(activities);
+    let reportTable: HTMLTableElement = document.getElementById("report") as HTMLTableElement;
+    rowReport.forEach((itemDTO) => {
+        let tr: HTMLTableRowElement;
+        let td: HTMLTableCellElement;
+        tr = reportTable.insertRow(-1);
+        td = tr.insertCell(0);
+        td.innerHTML = itemDTO.course;
+        td = tr.insertCell(1);
+        td.innerHTML = itemDTO.fullName;
+        td = tr.insertCell(2);
+        td.innerHTML = itemDTO.level.toString();
+        td = tr.insertCell(3);
+        td.innerHTML = itemDTO.activity;
+        td = tr.insertCell(4);
+        td.innerHTML = itemDTO.maximun_grade.toString();
+        td = tr.insertCell(5);
+        td.innerHTML = itemDTO.grade.toString();
+      });
+      
+  }
+  
+  
+
+
+
+  
+  
+
+  

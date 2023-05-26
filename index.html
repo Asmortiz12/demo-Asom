@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="cmyk">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,113 +8,115 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@2.13.5/dist/full.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 <body>
-
+    
     <div class="max-w-2xl mx-auto rounded-lg shadow-2xl border-4">
         <p class="text-center uppercase font-bold my-4">Registro del <span class="text-primary">Estudiante</span></p>
         <div class="rounded-lg shadow-2xl border-4 grid grid-cols m-4 p-4 gap-4">
             <p>DNI:</p>
-            <input class="input input-primary" type="text" id="student_dni">
+            <input class="input input-dark" type="text" id="student_dni">
             <p>Nombre Completo:</p>
-            <input class="input input-primary" type="text" id="student_fullname">
+            <input class="input input-dark" type="text" id="student_fullname">
             <p>Nivel:</p>
-            <input class="input input-primary" type="text" id="student_level">
-            <button class="btn btn-primary" onclick="addStudent()">Guardar</button>
-        </div>
+            <input class="input input-dark" type="text" id="student_level">
+            <button class="btn btn-dark" onclick="addStudent()" >Guardar</button>
+         </div>
     </div>
 
-    <div class="divider"></div>
+    <div class="divider" ></div>
 
     <div class="max-w-2xl mx-auto rounded-lg shadow-2xl border-4">
         <p class="text-center uppercase font-bold my-4">Registro del <span class="text-primary">Docente</span></p>
         <div class="rounded-lg shadow-2xl border-4 grid grid-cols m-4 p-4 gap-4">
             <p>DNI:</p>
-            <input class="input input-primary" type="text" id="teacher_dni">
+            <input class="input input-dark" type="text" id="teacher_dni">
             <p>Nombre Completo:</p>
-            <input class="input input-primary" type="text" id="teacher_fullname">
+            <input class="input input-dark" type="text" id="teacher_fullname">
             <p>Área:</p>
-            <select id="teacher_area" class="input input-primary">
+            <select id="teacher_area" class="input input-dark" >
                 <option value="Art">Arte Culinario</option>
                 <option value="Marketing">Marketing</option>
                 <option value="Software">Software</option>
             </select>
-            <button class="btn btn-primary" onclick="addTeacher()">Guardar</button>
-        </div>
+            <button class="btn btn-dark" onclick="addTeacher()">Guardar</button>
+         </div>
     </div>
 
-    <div class="divider"></div>
+    <div class="divider" ></div>
 
     <div class="max-w-2xl mx-auto rounded-lg shadow-2xl border-4">
-        <p class="text-center uppercase font-bold my-4">Registro de la <span class="text-primary">Actividad</span></p>
+        <p class="text-center uppercase font-bold my-4">Registro de la  <span class="text-primary">Actividad</span></p>
         <div class="rounded-lg shadow-2xl border-4 grid grid-cols m-4 p-4 gap-4">
-            <p>Nombre:</p>
-            <input class="input input-primary" type="text" id="activity_name">
-            <button class="btn btn-primary" onclick="addActivity()">Guardar</button>
-        </div>
+            <p>Nombe:</p>
+            <input class="input input-dark" type="text" id="activity_name">
+            <button class="btn btn-dark" onclick="addActivity()">Guardar</button>
+         </div>
     </div>
 
-    <div class="divider"></div>
+    <div class="divider" ></div>
 
     <div class="max-w-2xl mx-auto rounded-lg shadow-2xl border-4">
-        <p class="text-center uppercase font-bold my-4">Configuración del <span class="text-primary">Libro de
-                calificaciones </span></p>
+        <p class="text-center uppercase font-bold my-4">Configuración del <span class="text-primary">Libro de calificaciones </span></p>
         <div class="rounded-lg shadow-2xl border-4 grid grid-cols m-4 p-4 gap-4">
             <p>Valor:</p>
-            <input class="input input-primary" type="text" id="gradebook_value">
+            <input class="input input-dark" type="text" id="gradebook_value">
             <p>Curso:</p>
-            <select id="gradebook_course" class="input input-primary">
+            <select id="gradebook_course" class="input input-dark">
             </select>
             <p>Actividad:</p>
-            <select id="gradebook_activity" class="input input-primary">
+            <select id="gradebook_activity" class="input input-dark">
             </select>
             <p>Nota Máxima:</p>
-            <input type="number" id="gradebook_maximun_grade" class="input input-primary">
-            <button class="btn btn-primary" onclick="addGradebookSetup()">Guardar</button>
-        </div>
+            <input type="number" id="gradebook_maximun_grade" class="input input-dark" >
+            <button class="btn btn-dark" onclick="addGradebookSetup()">Guardar</button>
+         </div>
     </div>
 
-
-    <div class="divider"></div>
-
+    <div class="divider" ></div>
     <div class="max-w-2xl mx-auto rounded-lg shadow-2xl border-4">
-        <p class="text-center uppercase font-bold my-4">Registro de la <span class="text-primary">Asignacion</span></p>
+        <p class="text-center uppercase font-bold my-4">Registro de la <span class="text-primary">Asignacion </span></p>
         <div class="rounded-lg shadow-2xl border-4 grid grid-cols m-4 p-4 gap-4">
-            <p>Estudiante</p>
-            <select class="input input-primary" id="assignment_student"></select>
-            <p>Libro de Configuracion</p>
-            <select class="input input-primary" id="assignment_gradebooksetup"></select>
-            <p>Calificaciones</p>
-            <input class="input input-primary" type="text" id="asignment_grade">
-            <button class="btn btn-primary" onclick="addAssignment()">Guardar</button>
-        </div>
+
+            <p>Estudiante:</p>
+            <select id="assignment_student" class="input input-dark">
+            </select>
+            <p>Libro de Cofiguracion:</p>
+            <select id="assignment_gradebooksetup" class="input input-dark"></select>
+            
+            <p>Nota:</p>
+            <input class="input input-dark" type="number" id="assignment_grade">
+            
+            <button class="btn btn-dark" onclick="addAssignment()">Guardar</button>
+         </div>
     </div>
-
-    <div class="divider"></div>
-
+    <div class="max-w-2xl mx-auto rounded-lg shadow-2xl border-4" >
+<input type="number" min="13" max="20">
     <hr>
-    <h2>reporte</h2>
+    <h2>REPORTE</h2>
     <div>
-        <button class="btn btn-primary" onclick="genrerateReport()">generar</button>
+        <button class="btn btn-dark" onclick="generateReport()">Generar Reporte</button>
     </div>
-    <table class="table <table class=" table table-striped">
+    <table id="report" class="table table-striped" style="border-radius: 2px solid rgb(117, 192, 221)">
         <thead>
-            <tr>
-                <th>curso</th>
-                <th>Nombre</th>
-                <th>Nivel</th>
-                <th>Actividad</th>
-                <th>calificasion</th>
-            </tr>
+           <tr>
+              <th>Curso</th>
+              <th>Nombre</th>
+              <th>Nivel</th>
+              <th>Actividad</th>
+              <th>Valor</th>
+              <th>Calificación</th>
+           </tr>
         </thead>
-    </table>
-
-    <div class="divider"></div>
-
+        <tbody>
+           <tr> 
+              <td></td> 
+           </tr>
+        </tbody>
+     </table>
+    </div>
 
 
     <script>let exports = {};</script>
-    <script src="built/main.js"></script>
+    <script src="dist/main.js"></script>
 </body>
-
 </html>
